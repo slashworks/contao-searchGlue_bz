@@ -1,0 +1,30 @@
+<script type="text/javascript" src="system/modules/searchGlue_bz/html/js/highlight.js"></script>
+<script type="text/javascript">
+window.addEvent('domready', function() {
+    var searchModule = document.getElement('.mod_search') || false;
+    var url = new URI(location.href);
+    if(searchModule) {
+        var getTags = searchModule.getElements('a');
+
+        getTags.each(function(el){
+            var _href = el.get('href'),
+                _newHref = _href+'?keywordGumshoe_bz='+url.getData('keywords');
+
+            el.set('href', _newHref);
+        });
+    }
+
+    var keyword = url.getData('keywordGumshoe_bz') || false;
+    if(keyword)
+    {
+        var searchableTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'th', 'td'];
+        var highlighter = new Highlighter({
+            autoUnhighlight: false,
+            tag: 'span.highlight'
+        });
+
+        highlighter.highlight(keyword);
+    }
+});
+
+</script>
